@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tecnologías de Redes Modernas</title>
+    <script src="https://kit.fontawesome.com/a2e0fc422d.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+         :root {
+            --bg-light: #eef2f3;
+            --bg-dark: #1e272e;
+            --text-light: #2c3e50;
+            --text-dark: #ecf0f1;
+            --card-bg-light: #ffffff;
+            --card-bg-dark: #2f3640;
+            --nav-bg-light: #34495e;
+            --nav-bg-dark: #2c3e50;
+            --accent: #1abc9c;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.4s ease;
+        }
+        
+        body.dark {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+        
+        header {
+            background-color: var(--nav-bg-light);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.4s ease;
+        }
+        
+        body.dark header {
+            background-color: var(--nav-bg-dark);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        nav {
+            background-color: var(--nav-bg-light);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px 0;
+            transition: background 0.4s ease;
+        }
+        
+        body.dark nav {
+            background-color: var(--nav-bg-dark);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            background-color: var(--accent);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #16a085;
+        }
+        
+        #toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--card-bg-light);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        body.dark section {
+            background: var(--card-bg-dark);
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            color: inherit;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--nav-bg-light);
+            color: white;
+            margin-top: 40px;
+            transition: background 0.4s ease;
+        }
+        
+        body.dark footer {
+            background-color: var(--nav-bg-dark);
+        }
+        
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+        }
+        
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <button id="toggle-theme" title="Cambiar tema">
+    <i class="fas fa-moon"></i>
+  </button>
+
+    <header>
+        <h1><i class="fas fa-network-wired"></i> Tecnologías de Redes Modernas</h1>
+    </header>
+
+    <nav>
+        <a href="#tendencias"><i class="fas fa-signal"></i> Tendencias</a>
+        <a href="#vpc"><i class="fas fa-server"></i> VPC</a>
+        <a href="#nic"><i class="fas fa-project-diagram"></i> NIC</a>
+        <a href="#ipv6"><i class="fas fa-code-branch"></i> IPv6</a>
+        <a href="#vnet"><i class="fas fa-cloud"></i> VNET</a>
+        <a href="#balanceo"><i class="fas fa-balance-scale"></i> Balanceo</a>
+        <a href="#firewall"><i class="fas fa-shield-alt"></i> Firewall</a>
+        <a href="#dns"><i class="fas fa-globe"></i> DNS</a>
+        <a href="#vpn"><i class="fas fa-lock"></i> VPN</a>
+        <a href="#monitor"><i class="fas fa-chart-line"></i> Monitoreo</a>
+    </nav>
+
+    <section id="tendencias">
+        <h2>Tendencias de Redes</h2>
+        <p>Las redes modernas están evolucionando rápidamente para satisfacer las demandas de escalabilidad, seguridad y eficiencia. Las principales tendencias incluyen:</p>
+        <ul>
+            <li><strong>Redes Definidas por Software (SDN):</strong> Separan el plano de control del plano de datos para una gestión centralizada y programable.</li>
+            <li><strong>Seguridad Zero Trust:</strong> Modelo de seguridad que no confía automáticamente en nada dentro o fuera de la red y requiere verificación continua.</li>
+            <li><strong>Automatización y Orquestación:</strong> Uso de scripts y herramientas como Ansible o Terraform para configurar redes sin intervención manual.</li>
+            <li><strong>Conectividad 5G:</strong> Ofrece mayores velocidades, menor latencia y conexión masiva de dispositivos, ideal para IoT y ciudades inteligentes.</li>
+            <li><strong>IA y Analítica de Redes:</strong> Análisis del tráfico y eventos de red para optimizar rendimiento y detectar amenazas.</li>
+            <li><strong>Edge Computing:</strong> Procesamiento de datos más cerca del origen para reducir latencia y carga en la red central.</li>
+        </ul>
+    </section>
+
+    <section id="vpc">
+        <h2>Servidores Web (VPC)</h2>
+        <p>Una VPC (Virtual Private Cloud) es una red virtual aislada dentro de un proveedor de nube pública como AWS, Azure o Google Cloud. Es ideal para desplegar servidores web con mayor seguridad y control.</p>
+        <ul>
+            <li><strong>Segmentación:</strong> Puedes crear subredes públicas y privadas, separando servicios según su exposición.</li>
+            <li><strong>Grupos de seguridad y ACLs:</strong> Controlan el tráfico entrante y saliente a nivel de red o de instancia.</li>
+            <li><strong>Puertas de enlace (Gateways):</strong> Permiten acceso a internet, a redes on-premises o a otros servicios internos.</li>
+            <li><strong>Alta disponibilidad:</strong> Las VPCs soportan balanceo de carga y replicación entre zonas de disponibilidad.</li>
+            <li><strong>Monitoreo y trazabilidad:</strong> Integración con servicios como CloudWatch o Stackdriver para auditoría y desempeño.</li>
+        </ul>
+    </section>
+
+    <section id="nic">
+        <h2>Asignación de Tarjetas de Red (NIC)</h2>
+        <p>Las NICs (Network Interface Cards) virtuales permiten la conectividad de una instancia o máquina virtual con una red. Su gestión es clave en arquitecturas virtualizadas.</p>
+        <ul>
+            <li><strong>Asignación dinámica:</strong> Las NICs pueden crearse y asignarse en tiempo real según las necesidades del entorno.</li>
+            <li><strong>Multihoming:</strong> Permite a una máquina tener múltiples NICs para segmentar tráfico o agregar redundancia.</li>
+            <li><strong>Configuración de IPs:</strong> Se puede definir una o varias IPs privadas o públicas por NIC.</li>
+            <li><strong>Vinculación a VPC o VNET:</strong> Las NICs se enlazan a redes virtuales para establecer rutas y políticas de seguridad.</li>
+            <li><strong>Monitoreo de tráfico:</strong> Se pueden usar herramientas como flow logs para auditar o analizar el tráfico por interfaz.</li>
+        </ul>
+    </section>
+
+    <section id="ipv6">
+        <h2>IP versión 6 (IPv6)</h2>
+        <p>IPv6 es el sucesor de IPv4, diseñado para superar el agotamiento de direcciones y proporcionar mejoras significativas en conectividad y seguridad.</p>
+        <ul>
+            <li><strong>Espacio de direcciones ampliado:</strong> Soporta 2^128 direcciones únicas, permitiendo escalabilidad global.</li>
+            <li><strong>Simplificación del encabezado:</strong> Mejora la eficiencia del procesamiento de paquetes.</li>
+            <li><strong>Autoconfiguración:</strong> Usa SLAAC (Stateless Address Autoconfiguration) para que dispositivos obtengan IP automáticamente.</li>
+            <li><strong>Seguridad integrada:</strong> Requiere soporte para IPSec para cifrado de extremo a extremo.</li>
+            <li><strong>Sin NAT:</strong> Cada dispositivo puede tener una IP pública única, lo cual mejora trazabilidad y rendimiento.</li>
+        </ul>
+    </section>
+
+    <section id="vnet">
+        <h2>VNET (Virtual Network)</h2>
+        <p>Una VNET es una red virtual en la nube que simula una red local, permitiendo conectar y proteger recursos de forma personalizada.</p>
+        <ul>
+            <li><strong>Subredes personalizadas:</strong> Puedes definir rangos IP, políticas de ruteo y control de acceso.</li>
+            <li><strong>Emparejamiento de redes (Peering):</strong> Interconecta VNETs de forma privada y segura entre distintas regiones.</li>
+            <li><strong>Gateway VPN o ExpressRoute:</strong> Conecta tu red local a la nube mediante túneles cifrados o enlaces dedicados.</li>
+            <li><strong>DNS personalizado:</strong> Soporta resolución de nombres interna para servicios dentro de la red.</li>
+            <li><strong>Grupos de seguridad:</strong> Aplican reglas para restringir tráfico a nivel de red o por instancia.</li>
+        </ul>
+    </section>
+
+    <section id="balanceo">
+        <h2>Balanceadores de Carga (Load Balancers)</h2>
+        <p>Los balanceadores de carga distribuyen tráfico entrante entre múltiples servidores para evitar sobrecarga, mejorar disponibilidad y optimizar rendimiento.</p>
+        <h3>Ventajas:</h3>
+        <ul>
+            <li><strong>Alta disponibilidad:</strong> Detectan fallos y redirigen tráfico automáticamente.</li>
+            <li><strong>Escalabilidad:</strong> Permiten añadir o quitar instancias de forma dinámica.</li>
+            <li><strong>Seguridad:</strong> Algunos ofrecen cifrado SSL/TLS y protección contra ataques DDoS.</li>
+            <li><strong>Monitoreo:</strong> Proveen métricas del tráfico, latencia y errores.</li>
+        </ul>
+        <h3>Tipos:</h3>
+        <ul>
+            <li><strong>Capa 4 (Transporte):</strong> Opera en nivel TCP/UDP y distribuye tráfico según IPs y puertos.</li>
+            <li><strong>Capa 7 (Aplicación):</strong> Analiza datos de aplicación como rutas URL, cookies o cabeceras HTTP para enrutar solicitudes.</li>
+            <li><strong>Global:</strong> Balancea carga entre regiones geográficas (GSLB).</li>
+            <li><strong>Interno vs Externo:</strong> Pueden estar orientados al tráfico interno de red o servir tráfico público.</li>
+        </ul>
+    </section>
+    <section id="firewall">
+        <h2>Firewall en la Nube</h2>
+        <p>Los firewalls controlan el tráfico de red entrante y saliente con reglas de seguridad predefinidas. En la nube, su configuración es más dinámica y escalable.</p>
+        <ul>
+            <li><strong>Firewall de red:</strong> Filtra el tráfico en los perímetros de la red.</li>
+            <li><strong>Firewall de aplicación web (WAF):</strong> Protege aplicaciones web contra ataques comunes como inyección SQL o XSS.</li>
+            <li><strong>Integración con grupos de seguridad:</strong> Complementa reglas específicas por instancia.</li>
+            <li><strong>Escalabilidad:</strong> Se adapta automáticamente al tráfico sin intervención física.</li>
+        </ul>
+    </section>
+
+    <section id="dns">
+        <h2>Sistema de Nombres de Dominio (DNS)</h2>
+        <p>El DNS traduce nombres de dominio legibles en direcciones IP. Su gestión es crucial para el rendimiento y disponibilidad de servicios.</p>
+        <ul>
+            <li><strong>DNS público:</strong> Accesible desde internet, gestiona nombres de dominio externos.</li>
+            <li><strong>DNS privado:</strong> Resuelve nombres solo dentro de una red virtual.</li>
+            <li><strong>Políticas de resolución:</strong> Controlan la propagación, TTL y comportamiento de caché.</li>
+            <li><strong>Protección contra ataques:</strong> Integración con servicios anti-DNS spoofing y DDoS.</li>
+        </ul>
+    </section>
+
+    <section id="vpn">
+        <h2>Red Privada Virtual (VPN)</h2>
+        <p>Las VPN permiten conexiones seguras entre redes remotas y la nube usando túneles cifrados, ideales para accesos corporativos.</p>
+        <ul>
+            <li><strong>Túneles IPsec:</strong> Comúnmente usados para conectar sitios físicos a la nube.</li>
+            <li><strong>VPN cliente-servidor:</strong> Permite que usuarios accedan a la red desde cualquier lugar.</li>
+            <li><strong>Autenticación avanzada:</strong> Integración con MFA, certificados o autenticación federada.</li>
+            <li><strong>Rendimiento:</strong> Se puede optimizar con compresión y balanceo.</li>
+        </ul>
+    </section>
+
+    <section id="monitor">
+        <h2>Monitoreo y Diagnóstico de Redes</h2>
+        <p>El monitoreo continuo de redes es esencial para detectar anomalías, optimizar recursos y mantener disponibilidad.</p>
+        <ul>
+            <li><strong>Logs de tráfico:</strong> Registros detallados sobre conexiones y flujo de paquetes.</li>
+            <li><strong>Alertas en tiempo real:</strong> Notificaciones automáticas ante eventos críticos.</li>
+            <li><strong>Dashboards visuales:</strong> Herramientas como Grafana o Kibana permiten visualización personalizada.</li>
+            <li><strong>Integración con IA:</strong> Algoritmos que detectan patrones inusuales para anticipar problemas.</li>
+        </ul>
+    </section>
+
+    <footer>
+        &copy; 2025 Redes y Tecnologías - Página informativa
+    </footer>
+
+    <script>
+        // Efecto de fade
+        const sections = document.querySelectorAll("section");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+        }, {
+            threshold: 0.1
+        });
+        sections.forEach(section => observer.observe(section));
+
+        // Tema claro/oscuro
+        const toggleBtn = document.getElementById('toggle-theme');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = toggleBtn.querySelector('i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        });
+
+        // Partículas básicas
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        for (let i = 0; i < 80; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 1,
+                vy: (Math.random() - 0.5) * 1,
+                radius: 2
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "#1abc9c";
+                ctx.fill();
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = "rgba(26, 188, 156, 0.2)";
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+
+</body>
+
+</html>
